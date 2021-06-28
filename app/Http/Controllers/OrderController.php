@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function create(){
         try{
             // Get random food
-            $food = Food::orderByRaw('rand()')->first();
+            $food = Food::orderByRaw('random()')->first();
 
             // Generate order
             $order = Order::create([ 'food_id'=>$food->id,'state'=> 'cooking',]);
