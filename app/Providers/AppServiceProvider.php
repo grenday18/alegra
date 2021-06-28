@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Observers\OrderbuyObserver;
 use App\Observers\OrderObserver;
 use App\Order;
+use App\Orderbuy;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Order::observe(OrderObserver::class);
+        Orderbuy::observe(OrderbuyObserver::class);
     }
 }

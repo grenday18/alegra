@@ -6,6 +6,7 @@ use App\Food;
 use App\FoodRecipe;
 use App\Ingredient;
 use App\Order;
+use App\Orderbuy;
 
 class OrderObserver
 {
@@ -16,29 +17,18 @@ class OrderObserver
                                 ->join('ingredients','ingredient_id','ingredients.id')
                                 ->get();
 
-        $ingredientsComplete = true;
-
         // Verify Ingredients in stock
         foreach($ingredients as $ingredient){
-            if($ingredient->stock < $ingredient->quantity){
                 // Generate job for shopping
-                $ingredientsComplete = false;
-            }
+                $orderbuy = new Orderbuy;
+                $orderbuy->order_id      = $order->id;
+                $orderbuy->ingredient_id = $ingredient->id;
+                $orderbuy->quantity      = $ingredient->quantity;
+                $orderbuy->asyncquantity = sizeof($ingredients);
+                $orderbuy->state         = 'buying';
+                $orderbuy->save();
         }
 
-        // Preparate Food
-        if($ingredientsComplete){
-            foreach($ingredients as $ingredient){
-                $model        = Ingredient::find($ingredient->id);
-                $model->stock = $ingredient->stock - $ingredient->quantity;
-                $model->save();
-            }
-        }
-
-        // Update State food
-        $order = Order::find($order->id);
-        $order->state = 'complete';
-        $order->save();
     }
 
 }
