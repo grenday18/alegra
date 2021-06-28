@@ -14,6 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::prefix('/orders')->group(function () {
+    route::post('/','OrderController@create');
+    route::get('/','OrderController@index');
 });
+
+Route::prefix('/foods')->group(function () {
+    route::post('/','FoodController@index');
+    route::get('/{id}','FoodController@show');
+});
+
+Route::prefix('/ingredients')->group(function () {
+    route::get('/','IngredientController@index');
+});
+
+

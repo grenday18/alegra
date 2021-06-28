@@ -24,7 +24,15 @@ const routes = [
         components: {
             default: require('./components/orders.vue').default
         },
-    },  
+    },
+    //================= ORDER'S ROUTES =================//
+    {
+        path: '/ingredients',
+        name:'ingredients',
+        components: {
+            default: require('./components/ingredients.vue').default
+        },
+    },
     //=================  DEFAULT  =====================//
     {
         path: '*',
@@ -34,12 +42,12 @@ const routes = [
 
 
 ]
-    
+
 const router = new VueRouter({
     routes,
     mode: 'history',
     linkActiveClass: 'active',
-    base: '', 
+    base: '',
 })
 
 export default router

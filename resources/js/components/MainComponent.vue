@@ -14,10 +14,10 @@
             <v-divider></v-divider>
             <!-- ================ MENU LINKS  ======================= -->
             <v-list dense nav rounded>
-                <router-link  v-for="(route,itemkey) in routes" 
-                    :to="{name:route.namePath}" 
-                    tag="div" 
-                    class="item-link" 
+                <router-link  v-for="(route,itemkey) in routes"
+                    :to="{name:route.namePath}"
+                    tag="div"
+                    class="item-link"
                     v-bind:key="itemkey">
                     <v-list-item>
                         <v-list-item-icon>
@@ -29,7 +29,7 @@
                         </v-list-item-content>
                     </v-list-item>
                 </router-link>
-                
+
             </v-list>
         </v-navigation-drawer>
 
@@ -68,23 +68,25 @@
         data () {
             return {
                 routes:[
-                    { 
+                    {
                         name:'Food Menu',
                         namePath:'menu',
                         icon:'mdi-view-dashboard'
                     },
-                    { 
+                    {
                         name:'Orders',
                         namePath:'orders',
+                        icon:'mdi-view-dashboard'
+                    },
+                    {
+                        name:'Ingredients',
+                        namePath:'ingredients',
                         icon:'mdi-view-dashboard'
                     }
                 ],
                 drawer: true,
             }
         },
-        mounted() {
-            console.log('Component mounted.')
-        }
     }
 </script>
 <style scoped>

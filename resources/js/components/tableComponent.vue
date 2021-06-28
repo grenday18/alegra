@@ -3,21 +3,17 @@
         <table>
             <thead>
                 <tr>
-                    <th v-if="marker" width="30px"></th>
-                    <th v-else width="30px">#</th>
+                    <th width="30px">#</th>
                     <th v-for="(header,i) in headers" :key="i">
                         {{header.text}}
                     </th>
                     <th v-if="states">Estado</th>
-                    <th v-if="actions">Acciones</th>  
+                    <th v-if="actions">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(item,i) in datos" :key="i">
-                    <td v-if="marker">
-                        <slot name="marker" v-bind:item="item" /> 
-                    </td>
-                    <td v-else>{{count+i+1}}</td>
+                    <td>{{count+i+1}}</td>
                     <td v-for="(header,i) in headers" :key="i">
                         {{item[header.value]}}
                     </td>
@@ -30,7 +26,7 @@
                 </tr>
             </tbody>
         </table>
-    
+
         <div v-if="!datos" class="table-no-data">
             No data found
         </div>
@@ -38,7 +34,8 @@
             <ul class="pagination">
                 <li v-if="calcPrevius()">
                     <span class="page-link" @click="$emit('getData',current_page-1)">
-                        <i class="fas fa-angle-double-left"></i>
+                        <<
+                        <!-- <i class="fas fa-angle-double-left"></i> -->
                     </span>
                 </li>
                 <li v-for="(button,i) in buttons" :key="i" :class="button.class">
@@ -46,7 +43,8 @@
                 </li>
                 <li v-if="calcNext()">
                     <span class="page-link" @click="$emit('getData',current_page+1)">
-                        <i class="fas fa-angle-double-right"></i>
+                        >>
+                        <!--<i class="fas fa-angle-double-right"></i>-->
                     </span>
                 </li>
             </ul>
@@ -55,7 +53,7 @@
 </template>
 <script>
 export default {
-    props: ['headers','datos','actions','marker','states','last_page','current_page','per_page'],
+    props: ['headers','datos','actions','states','last_page','current_page','per_page'],
     data () {
       return {
             pag_actual :0,
@@ -66,6 +64,7 @@ export default {
     },
     computed:{
         count () {
+            console.log(this.current_page)
             return this.per_page*(this.current_page-1)
         },
     },
@@ -78,7 +77,7 @@ export default {
         this.generateButtons()
     },
     methods:{
-        // function to generate pagination buttons 
+        // function to generate pagination buttons
         generateButtons(){
             // initial var
             let last = this.last_page
@@ -188,7 +187,11 @@ export default {
     .center{
         text-align: center;
     }
-        .chip{
+    .paginate_button.page-item.active{
+        background:  #1867c0;
+        color:  white;
+    }
+    .chip{
         color: #fff;
         border-radius: 16px;
         font-size: 12px;
