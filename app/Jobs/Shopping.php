@@ -59,18 +59,18 @@ class Shopping implements ShouldQueue
     }
 
     private function buyIngredient($ingredient){
-        sleep(10);
-        return rand(0,5);
-        // try{
-        //     // $token = 'basic ';
-        //     $url = 'http://ingeservicios.com.pe/api/market/'.$ingredient;
-        //     $data = file_get_contents($url);
-        //     $response = json_decode($data, true);
-        //     return $response['quantity'];
-        // }
-        // catch(Exception $e){
-        //     return 0;
-        // }
+        sleep(5);
+        // return rand(0,5);
+        try{
+            // $token = 'basic ';
+            $url = 'http://ingeservicios.com.pe/api/market/'.$ingredient;
+            $data = file_get_contents($url);
+            $response = json_decode($data, true);
+            return $response['quantity'];
+        }
+        catch(Exception $e){
+            return 0;
+        }
     }
 
 }

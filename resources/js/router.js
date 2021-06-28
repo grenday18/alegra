@@ -33,6 +33,14 @@ const routes = [
             default: require('./components/ingredients.vue').default
         },
     },
+    //================= ORDER'S ROUTES =================//
+    {
+        path: '/purchases',
+        name:'purchases',
+        components: {
+            default: require('./components/purchases.vue').default
+        },
+    },
     //=================  DEFAULT  =====================//
     {
         path: '*',

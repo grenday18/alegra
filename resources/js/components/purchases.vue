@@ -1,7 +1,7 @@
 <template>
     <v-col cols="12">
         <v-col cols="12">
-            <h3>Ingredients</h3>
+            <h3>Purchases</h3>
         </v-col>
         <!--===================== Table ========================= -->
         <v-col cols="12">
@@ -23,8 +23,9 @@
         data () {
             return {
                 tableHeaders: [
-                    { text: 'Ingredient', value: 'name' },
-                    { text: 'Stock', value: 'stock' },
+                    { text: 'Ingredient', value: 'ingredient' },
+                    { text: 'Order code', value: 'order_id' },
+                    { text: 'Quantity', value: 'quantity' },
                 ],
                 data:[],
                 // vars of paginate
@@ -38,7 +39,7 @@
         },
         methods:{
             getData(){
-                axios.get("/api/ingredients",{
+                axios.get("/api/orderbuy/purchases",{
                 }).then(response => {
                     if(response.status === 200) {
                         this.data       = response.data.data

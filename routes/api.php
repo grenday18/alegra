@@ -32,4 +32,6 @@ Route::prefix('/ingredients')->group(function () {
     route::get('/','IngredientController@index');
 });
 
-
+Route::prefix('/orderbuy')->group(function () {
+    route::get('/purchases','OrderbuyController@purchases');
+});

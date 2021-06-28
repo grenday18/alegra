@@ -76,12 +76,17 @@
                     {
                         name:'Orders',
                         namePath:'orders',
-                        icon:'mdi-view-dashboard'
+                        icon:'mdi-clipboard-text'
                     },
                     {
                         name:'Ingredients',
                         namePath:'ingredients',
-                        icon:'mdi-view-dashboard'
+                        icon:'mdi-cookie'
+                    },
+                    {
+                        name:'Purchases',
+                        namePath:'purchases',
+                        icon:'mdi-currency-usd'
                     }
                 ],
                 drawer: true,
